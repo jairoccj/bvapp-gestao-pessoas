@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Histórico de OS</title></head>
+<body>
+    <h2>Histórico de Ordens de Serviço - {{ prestador.razao_social }}</h2>
+    <ul>
+        {% for os in ordens_servico %}
+        <li>{{ os.descricao }} - {{ os.status }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

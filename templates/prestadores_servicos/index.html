@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><title>Prestadores de Serviços</title></head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h1>Consulta de Prestadores de Serviços</h1>
+    
+    <form method="GET" action="/prestadores-servicos/">
+        <input type="text" name="termo" placeholder="Pesquisar por Razão Social ou CNPJ">
+        <select name="status">
+            <option value="">Todos</option>
+            <option value="Ativo">Ativo</option>
+            <option value="Inativo">Inativo</option>
+        </select>
+        <button type="submit">Consultar</button>
+    </form>
+
+    <table id="tabela-prestadores">
+        {% for p in prestadores %}
+        <tr>
+            <td>{{ p.cnpj }}</td>
+            <td>{{ p.razao_social }}</td>
+            <td><a class="link-historico-os" href="/prestadores-servicos/{{ p.id }}/historico-os">Ver Histórico de Ordens de Serviço</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

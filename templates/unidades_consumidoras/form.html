@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>Cadastro/Edição de UC</title></head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h1>Cadastro de Unidade Consumidora</h1>
+    <form method="POST">
+        <input type="text" name="codigo_conta" value="{{ uc.codigo_conta if uc else '' }}">
+        <input type="text" name="nome" value="{{ uc.nome if uc else '' }}">
+        <input type="text" name="endereco" value="{{ uc.endereco if uc else '' }}">
+        <select name="cooperado_id">
+            {% for c in cooperados %}
+            <option value="{{ c.id }}">{{ c.nome }}</option>
+            {% endfor %}
+        </select>
+        <select name="status">
+            <option value="Ativo">Ativo</option>
+            <option value="Inativo">Inativo</option>
+        </select>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

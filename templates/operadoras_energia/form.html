@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>Cadastro/Edição de Operadora</title></head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h1>Cadastro de Operadora de Energia</h1>
+    <form method="POST">
+        <input type="text" name="cnpj" value="{{ operadora.cnpj if operadora else '' }}">
+        <input type="text" name="razao_social" value="{{ operadora.razao_social if operadora else '' }}">
+        <input type="text" name="telefone" value="{{ operadora.telefone if operadora else '' }}">
+        <input type="email" name="email" value="{{ operadora.email if operadora else '' }}">
+        <input type="text" name="endereco" value="{{ operadora.endereco if operadora else '' }}">
+        <input type="text" name="site" value="{{ operadora.site if operadora else '' }}">
+        <select name="status">
+            <option value="Ativo">Ativo</option>
+            <option value="Inativo">Inativo</option>
+        </select>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
