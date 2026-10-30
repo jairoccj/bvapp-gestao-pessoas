@@ -4,7 +4,6 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'chave-secreta-bvapp-gestao-pessoas'
     
-    # Registro dos Blueprints
     from unidades_consumidoras.routes import uc_bp
     from operadoras_energia.routes import operadora_bp
     from prestadores_servicos.routes import prestador_bp

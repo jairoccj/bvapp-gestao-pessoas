@@ -12,14 +12,11 @@ class UnidadesConsumidorasFunctionalTest(unittest.TestCase):
         self.browser.quit()
 
     def test_ct001_acesso_pagina_cadastro_uc(self):
-        # Ação: Acessar a página de cadastro de UC
         self.browser.get(f"{self.base_url}/novo")
         
-        # Oráculo: Verificar título da página
         titulo = self.browser.find_element(By.TAG_NAME, "h1")
         self.assertEqual(titulo.text, "Cadastro de Unidade Consumidora")
 
-        # Asserção: Verificar presença dos campos obrigatórios
         nome_input = self.browser.find_element(By.NAME, "nome")
         cooperado_select = self.browser.find_element(By.NAME, "cooperado_id")
         

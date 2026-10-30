@@ -14,14 +14,11 @@ class OperadorasEnergiaFunctionalTest(unittest.TestCase):
         self.browser.quit()
 
     def test_ct005_acesso_e_elementos_formulario_operadora(self):
-        # Ação: Acessar a página de cadastro de operadora de energia
         self.browser.get(f"{self.base_url}/novo")
 
-        # Oráculo: Verificar título da página
         titulo = self.browser.find_element(By.TAG_NAME, "h1")
         self.assertEqual(titulo.text, "Cadastro de Operadora de Energia")
 
-        # Asserções: Verificar presença dos campos obrigatórios e opcionais
         cnpj_input = self.browser.find_element(By.NAME, "cnpj")
         razao_social_input = self.browser.find_element(
             By.NAME, "razao_social"
@@ -30,7 +27,6 @@ class OperadorasEnergiaFunctionalTest(unittest.TestCase):
         email_input = self.browser.find_element(By.NAME, "email")
         status_select = self.browser.find_element(By.NAME, "status")
 
-        # Campos opcionais
         endereco_input = self.browser.find_element(By.NAME, "endereco")
         site_input = self.browser.find_element(By.NAME, "site")
 
@@ -43,20 +39,17 @@ class OperadorasEnergiaFunctionalTest(unittest.TestCase):
         self.assertTrue(site_input.is_displayed())
 
     def test_ct006_validacao_campos_obrigatorios_operadora(self):
-        # Ação: Tentar submeter o formulário sem preencher os campos obrigatórios
         self.browser.get(f"{self.base_url}/novo")
         btn_salvar = self.browser.find_element(
             By.CSS_SELECTOR, "button[type='submit']"
         )
         btn_salvar.click()
 
-        # Oráculo: O sistema deve exibir mensagem de alerta e não salvar
         mensagem_erro = self.browser.find_element(By.CLASS_NAME, "alert-danger")
         self.assertTrue(mensagem_erro.is_displayed())
         self.assertIn("Campos obrigatórios não preenchidos", mensagem_erro.text)
 
     def test_ct007_pesquisa_e_filtragem_operadoras(self):
-        # Ação: Acessar a tela de consulta e filtrar por status ativo
         self.browser.get(self.base_url)
 
         campo_pesquisa = self.browser.find_element(By.NAME, "termo")
@@ -69,12 +62,10 @@ class OperadorasEnergiaFunctionalTest(unittest.TestCase):
         select_status.send_keys("Ativo")
         btn_consultar.click()
 
-        # Oráculo: A tabela de resultados deve ser carregada com os filtros aplicados
         tabela = self.browser.find_element(By.ID, "tabela-operadoras")
         self.assertTrue(tabela.is_displayed())
 
     def test_ct008_alteracao_status_operadora(self):
-        # Ação: Acessar edição de status da primeira operadora cadastrada
         self.browser.get(f"{self.base_url}/1/editar-status")
 
         select_status = self.browser.find_element(By.NAME, "status")
@@ -85,7 +76,6 @@ class OperadorasEnergiaFunctionalTest(unittest.TestCase):
         select_status.send_keys("Inativo")
         btn_salvar.click()
 
-        # Oráculo: Verificar mensagem de confirmação de alteração de status
         mensagem_sucesso = self.browser.find_element(
             By.CLASS_NAME, "alert-success"
         )

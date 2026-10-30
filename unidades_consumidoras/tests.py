@@ -1,9 +1,5 @@
 import unittest
 from app import create_app
-from unidades_consumidoras.routes import (
-    COOPERADOS_DB,
-    UNIDADES_CONSUMIDORAS_DB,
-)
 
 
 class UnidadesConsumidorasIntegrationTest(unittest.TestCase):
@@ -40,7 +36,7 @@ class UnidadesConsumidorasIntegrationTest(unittest.TestCase):
             "codigo_conta": "UC-888000",
             "nome": "UC Invalida",
             "endereco": "Rua Erro, 50",
-            "cooperado_id": 3,  # Carlos Eduardo - Inativo
+            "cooperado_id": 3,
             "status": "Ativo",
         }
         response = self.client.post("/unidades-consumidoras/novo", data=payload)
@@ -54,7 +50,7 @@ class UnidadesConsumidorasIntegrationTest(unittest.TestCase):
         payload = {
             "nome": "UC Sul Alterada",
             "endereco": "Av Epitacio Pessoa",
-            "cooperado_id": 3,  # Inativo
+            "cooperado_id": 3,
         }
         response = self.client.post("/unidades-consumidoras/2/editar", data=payload)
         self.assertEqual(response.status_code, 400)

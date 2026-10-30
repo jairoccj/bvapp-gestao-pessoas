@@ -31,7 +31,6 @@ class PrestadoresServicosFunctionalTest(unittest.TestCase):
     def test_ct010_validacao_cadastro_prestador_com_chave_pix(self):
         self.browser.get(f"{self.base_url}/novo")
 
-        # Usando CNPJ único não presente no banco inicial
         self.browser.find_element(By.NAME, "cnpj").send_keys("77.888.999/0001-11")
         self.browser.find_element(By.NAME, "razao_social").send_keys("Manutenção Solar LTDA")
         self.browser.find_element(By.NAME, "telefone").send_keys("(83) 3333-1111")
@@ -53,7 +52,6 @@ class PrestadoresServicosFunctionalTest(unittest.TestCase):
         campo_pesquisa.send_keys("Solar Manutenções")
         self.browser.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
 
-        # Aguarda o re-carregamento da página e garante a captura do elemento no novo DOM
         link_historico = WebDriverWait(self.browser, 5).until(
             EC.element_to_be_clickable((By.CLASS_NAME, "link-historico-os"))
         )

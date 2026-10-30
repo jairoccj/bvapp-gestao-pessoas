@@ -3,7 +3,6 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 
 uc_bp = Blueprint("unidades_consumidoras", __name__)
 
-# Simuladores de banco de dados em memória para testes e prototipação
 COOPERADOS_DB = {
     1: {"id": 1, "nome": "Walmeran Trindade", "status": "Ativo"},
     2: {"id": 2, "nome": "Nadja Nóbrega", "status": "Ativo"},

@@ -34,7 +34,7 @@ class OperadorasEnergiaIntegrationTest(unittest.TestCase):
 
     def test_criar_operadora_duplicidade_cnpj(self):
         payload = {
-            "cnpj": "08.823.111/0001-90",  # CNPJ duplicado
+            "cnpj": "08.823.111/0001-90",
             "razao_social": "Empresa Duplicada",
             "telefone": "(83) 3218-0000",
             "email": "teste@duplicada.com",
